@@ -3,15 +3,19 @@ extends layout
 block content 
 
     h1 New Book 
+    form(action= '/books/new' , method="post" )
+        div
+            label(for="1") Title:
+            input( type='text' name= "title" id="1")
+        div
+            label(for="2") Author:
+            input( type='text' name= "author" id="2") 
+        div
+            label(for="3") Genre:
+            input( type='text' name= "genre" id='3')
+        div
+            label(for="4") Year:
+            input( type='text' name= "year" id='4')
 
-    input( type='text' name= "Author")  
-    input( type='text' name= "Title")
-    input( type='text' name= "Genre")
-    input( type='text' name= "Year")
-
-    h3 Title
-    h3 Author 
-    h3 Genre 
-    h3 Year
-
-    button(type=submit ) Create a new book
+        input(type="submit" name= "new_book" value="Create a new book") 
+    a(href="/books") Cancel
