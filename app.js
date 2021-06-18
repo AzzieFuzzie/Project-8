@@ -32,28 +32,29 @@ const sequelize = require('./models').sequelize;
     console.error('Error connecting to the database: ', error);
   }
 })();
+
 // import routes
 const routes = require('./routes/books');
 
 app.use(routes);
 // 404 Error Handler
 
-// app.use((req, res, next) => {
-//   const err = new Error('Not found');
-//   err.status = 404;
-//   res.render('page_not_found');
-//   next(err);
-// });
+app.use((req, res, next) => {
+  const err = new Error('Not found');
+  err.status = 404;
+  res.render('page_not_found');
+  next(err);
+});
 
-// app.use((req, res, next) => {
-//   const err = new Error('Oops');
-//   err.status = 500;
-//   next(err);
-// });
+app.use((req, res, next) => {
+  const err = new Error('Oops');
+  err.status = 500;
+  next(err);
+});
 
-// app.use((err, req, res, next) => {
-//   res.locals.error = err;
-//   res.status(err.status);
-//   res.render('error');
-// });
+app.use((err, req, res, next) => {
+  res.locals.error = err;
+  res.status(err.status);
+  res.render('error');
+});
 module.exports = app;
