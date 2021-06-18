@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notEmpty: {
-            msg: 'Please enter a value for "title" ',
+            msg: 'Please enter a value for "Title" ',
           },
         },
       },
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notEmpty: {
-            msg: 'Please enter a value for "author" ',
+            msg: 'Please enter a value for "Author" ',
           },
         },
       },

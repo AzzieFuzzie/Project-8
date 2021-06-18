@@ -62,6 +62,7 @@ router.post(
           book,
           errors: error.errors,
           author: 'New Book',
+          title: 'New Book',
         });
       } else {
         throw error; // error caught in the asyncHandler's catch block
@@ -81,7 +82,7 @@ router.get(
 
 // Updates book info in the database
 router.post(
-  '/books/:id/',
+  '/books/:id',
   asyncHandler(async (req, res) => {
     const book = await Book.findByPk(req.params.id);
     await book.update(req.body);
