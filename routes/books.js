@@ -2,12 +2,6 @@ var express = require('express');
 var router = express.Router();
 const Book = require('../models').Book;
 
-// router.get('/', async (req, res) => {
-//   // res.render('index', { title: 'Express' });
-//   const books = await Book.findAll();
-//   res.json(books);
-// });
-
 /* Handler function to wrap each route. */
 function asyncHandler(cb) {
   return async (req, res, next) => {
