@@ -20,7 +20,7 @@ function asyncHandler(cb) {
   };
 }
 
-// Static files
+// Static files css styles
 router.use('/static', express.static('public'));
 
 // Redirects home page to /books
@@ -71,12 +71,16 @@ router.post(
   })
 );
 
-// Shows book detail form
+// Shows a single book (detail form)
 router.get(
   '/books/:id',
   asyncHandler(async (req, res) => {
     const book = await Book.findByPk(req.params.id);
-    res.render('update_book', { book, title: book.title });
+    if (book) {
+      res.render('update_book', { book, title: book.title });
+    } else {
+      res.render('page_not_found');
+    }
   })
 );
 
