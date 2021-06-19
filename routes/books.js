@@ -79,6 +79,7 @@ router.get(
     if (book) {
       res.render('update_book', { book, title: book.title });
     } else {
+      res.status(404);
       res.render('page_not_found');
     }
   })
