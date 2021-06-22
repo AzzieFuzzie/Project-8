@@ -72,8 +72,7 @@ router.get(
     if (book) {
       res.render('update-book', { book, title: book.title });
     } else {
-      res.render('page-not-found');
-      res.status(404);
+      res.status(404).render('page-not-found');
     }
   })
 );
@@ -90,11 +89,14 @@ router.post(
     } catch (error) {
       if (error.name === 'SequelizeValidationError') {
         book = await Book.build(req.body);
+        book.id = req.params.id;
         res.render('update-book', {
           book,
           errors: error.errors,
           author: 'New Book',
           title: 'New Book',
+          genre: 'New Book',
+          year: 'New Book',
         });
       } else {
         throw error; // error caught in the asyncHandler's catch block
