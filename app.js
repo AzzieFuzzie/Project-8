@@ -42,7 +42,7 @@ app.use(routes);
 app.use((req, res, next) => {
   const err = new Error('Not found');
   err.status = 404;
-  res.render('page_not_found');
+  res.render('page-not-found');
   next(err);
 });
 

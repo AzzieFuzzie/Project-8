@@ -29,7 +29,6 @@ router.get(
   asyncHandler(async (req, res) => {
     const books = await Book.findAll();
     res.render('index', { books });
-    res.render('error', { error: err });
   })
 );
 
@@ -74,7 +73,7 @@ router.get(
       res.render('update-book', { book, title: book.title });
     } else {
       res.render('page-not-found');
-      return res.status(404);
+      res.status(404);
     }
   })
 );
