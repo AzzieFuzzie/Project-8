@@ -40,10 +40,8 @@ app.use(routes);
 // 404 Error Handler
 
 app.use((req, res, next) => {
-  const err = new Error('Not found');
-  err.status = 404;
-  res.render('page-not-found');
-  next(err);
+  console.log('404 Error');
+  res.status(404).render('page-not-found');
 });
 
 // app.use((req, res, next) => {
@@ -59,7 +57,7 @@ app.use((err, req, res, next) => {
   }
 
   if (err.status === 404) {
-    res.status(404).render('page-not-found', { err });
+    res.status(404).render('page-not-found');
   } else {
     err.message = err.message || 'Oops';
     res.status(err.status || 500).render('errors', { err });

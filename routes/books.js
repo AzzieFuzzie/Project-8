@@ -43,7 +43,7 @@ router.get(
 // Posts/Creates a new book to the database
 router.post(
   '/books/new',
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req, res, next) => {
     let book;
     try {
       book = await Book.create(req.body);
@@ -58,8 +58,10 @@ router.post(
           title: 'New Book',
         });
       } else {
-        error.status = 404;
-        next(error);
+        const err = new Error();
+        err.status = 404;
+        err.message = "Oops,Looks like the book doesn't exist";
+        next(err);
       }
     }
   })
@@ -68,7 +70,7 @@ router.post(
 // Shows a single book (detail form)
 router.get(
   '/books/:id',
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req, res, next) => {
     const book = await Book.findByPk(req.params.id);
     if (book) {
       res.render('update-book', { book, title: book.title });
