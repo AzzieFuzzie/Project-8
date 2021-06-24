@@ -7,18 +7,19 @@ block content
     include errors
 
     form(action= '/books/new' , method="post" )
-        div
+        p
             label(for="1") Title:
             input( type='text' name= "title" id="1")
-        div
+        p
             label(for="2") Author:
             input( type='text' name= "author" id="2") 
-        div
+        p
             label(for="3") Genre:
             input( type='text' name= "genre" id='3')
-        div
+        p
             label(for="4") Year:
             input( type='text' name= "year" id='4')
-
-        input(type="submit" name= "new_book" value="Create a new book") 
-        a.button(href='/')  Cancel
+        p
+            input(type="submit" name= "new_book" value="Create a new book") 
+        p    
+            a.button(href='/')  Cancel

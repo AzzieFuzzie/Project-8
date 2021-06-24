@@ -9,7 +9,7 @@ function asyncHandler(cb) {
       await cb(req, res, next);
     } catch (error) {
       // Forward error to the global error handler
-      next(error);
+      next(err);
     }
   };
 }
