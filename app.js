@@ -46,15 +46,23 @@ app.use((req, res, next) => {
   next(err);
 });
 
-app.use((req, res, next) => {
-  const err = new Error('Oops');
-  err.status = 500;
-  next(err);
-});
+// app.use((req, res, next) => {
+//   const err = new Error('Oops');
+//   err.status = 500;
+//   next(err);
+// });
 
+// Global error handler
 app.use((err, req, res, next) => {
-  res.locals.error = err;
-  res.status(err.status);
-  res.render('error');
+  if (err) {
+    console.log('Global error handler called', err);
+  }
+
+  if (err.status === 404) {
+    res.status(404).render('page-not-found', { err });
+  } else {
+    err.message = err.message || 'Oops';
+    status(err.status || 500).render('error', { err });
+  }
 });
 module.exports = app;

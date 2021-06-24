@@ -58,7 +58,8 @@ router.post(
           title: 'New Book',
         });
       } else {
-        throw error; // error caught in the asyncHandler's catch block
+        error.status = 404;
+        next(error);
       }
     }
   })
@@ -72,7 +73,10 @@ router.get(
     if (book) {
       res.render('update-book', { book, title: book.title });
     } else {
-      res.status(404).render('page-not-found');
+      const err = new Error();
+      err.status = 404;
+      err.message = "Oops,Looks like the book doesn't exist";
+      next(err);
     }
   })
 );
