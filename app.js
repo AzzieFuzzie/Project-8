@@ -62,7 +62,7 @@ app.use((err, req, res, next) => {
     res.status(404).render('page-not-found', { err });
   } else {
     err.message = err.message || 'Oops';
-    status(err.status || 500).render('error', { err });
+    status(err.status || 500).render('errors', { err });
   }
 });
 module.exports = app;

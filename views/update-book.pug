@@ -6,10 +6,9 @@ block content
         
         form(action= '/books/' + book.id , method="post" )
             include form
-            input(type="submit" value="Update book")
-    
+            div
+                input(type="submit" value="Update book")
+                a.button(href="/books") Cancel
 
         form(action="/books/" + book.id + "/delete", method="post")
-            
-            a.button(href="/books") Cancel
-            input(type="submit", value = "Delete book")
+             input(type="submit", value = "Delete book")
